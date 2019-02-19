@@ -42,5 +42,11 @@ public class CarController
                 .orElseThrow(() -> new CarNotFoundException(id));
     }
 
+    @GetMapping("/cars/year/{year}")
+    public List<Car> findCarsByYear(@PathVariable Long year)
+    {
+        return carrepos.findByYear(year);
+    }
+
 
 }
