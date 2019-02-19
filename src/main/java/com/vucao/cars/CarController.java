@@ -25,5 +25,15 @@ public class CarController
         return carrepos.findAll();
     }
 
+    @PostMapping("/cars/upload")
+    public List<Car> newCars(@RequestBody List<Car> newCars)
+    {
+        CarLog message = new CarLog("Data Loaded");
+        rt.convertAndSend(CarsApplication.QUEUE_NAME, message.toString());
+        log.info("Message sent");
+
+        return carrepos.saveAll(newCars);
+    }
+
 
 }
