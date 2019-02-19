@@ -35,5 +35,12 @@ public class CarController
         return carrepos.saveAll(newCars);
     }
 
+    @GetMapping("/cars/id/{id}")
+    public Car findOne(@PathVariable Long id)
+    {
+        return carrepos.findById(id)
+                .orElseThrow(() -> new CarNotFoundException(id));
+    }
+
 
 }
