@@ -48,5 +48,14 @@ public class CarController
         return carrepos.findByYear(year);
     }
 
+    @GetMapping("/cars/brand/{brand}")
+    public List<Car> findCarsByBrand(@PathVariable String brand)
+    {
+        CarLog message = new CarLog("Search for {brand}");
+        rt.convertAndSend(CarsApplication.QUEUE_NAME, message.toString());
+        log.info("Message sent");
+        return carrepos.findByBrandIgnoreCase(brand);
+    }
+
 
 }
