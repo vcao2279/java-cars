@@ -57,5 +57,10 @@ public class CarController
         return carrepos.findByBrandIgnoreCase(brand);
     }
 
-
+    @DeleteMapping("/cars/delete/{id}")
+    public Car deleteCar(@PathVariable Long id)
+    {
+        carrepos.deleteById(id);
+        return null;
+    }
 }
